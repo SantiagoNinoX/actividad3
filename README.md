@@ -1,4 +1,4 @@
-# Actividad 3: Juego Pintando.
+# Actividad 3: Juego Packman.
 
 Master Role: Gabriel Gutiérrez Guerra - A01660505.
 
