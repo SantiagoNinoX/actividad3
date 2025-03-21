@@ -112,18 +112,19 @@ def move():
     dot(20, 'yellow')
 
     for point, course in ghosts:
-        if valid(point + course):
-            point.move(course)
-        else:
-            options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
-            ]
-            plan = choice(options)
-            course.x = plan.x
-            course.y = plan.y
+        options = [vector(5, 0), vector(-5, 0), vector(0, 5), vector(0, -5)]
+        min_dist = float('inf')
+        best_dir = course
+        for option in options:
+            new_pos = point + option
+            if valid(new_pos):
+                distance = abs(new_pos.x - pacman.x) + abs(new_pos.y - pacman.y)
+                if distance < min_dist:
+                    min_dist = distance
+                    best_dir = option
+        course.x = best_dir.x
+        course.y = best_dir.y
+        point.move(course)
 
         up()
         goto(point.x + 10, point.y + 10)
